@@ -23,9 +23,33 @@ async function run(){
         const database = client.db('onlineBookShop');
         const bookCollection = database.collection('books');
 
-        const query = { title: 'Back to the Future' };
-        const book = await bookCollection.insertOne(query);
-        console.log(book);
+        //console.log(book);
+         //GET product API
+         app.get('/books',async(req,res)=>{
+         // console.log(req.query);
+          const cursor = bookCollection.find({});
+          const books = await cursor.toArray(); 
+          console.log(books); 
+          res.send(books);
+      });
+
+      //use post to get data by keys
+      app.post('books/byKeys',async (req,res)=>{
+          //console.log(req.body);
+          const keys = req.body;
+          const query = {key:{$in:keys}};
+          const users = await productCollection.find(query).toArray();
+          res.send(products);
+
+      });
+
+    //   //ADD orders API
+    //   app.post('/orders', async (req,res)=>{
+    //       const order = req.body;
+    //       const result = await orderCollection.insertOne(order);
+    //       //console.log('order',order);
+    //       res.json(result);
+    //   })
     }
     finally{
         //await client.close();
