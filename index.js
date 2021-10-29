@@ -22,6 +22,7 @@ async function run(){
         console.log('database connected');
         const database = client.db('onlineBookShop');
         const bookCollection = database.collection('books');
+        const clientCollection = database.collection('client');
 
         //console.log(book);
          //GET product API
@@ -43,13 +44,13 @@ async function run(){
 
       });
 
-    //   //ADD orders API
-    //   app.post('/orders', async (req,res)=>{
-    //       const order = req.body;
-    //       const result = await orderCollection.insertOne(order);
-    //       //console.log('order',order);
-    //       res.json(result);
-    //   })
+      //ADD orders API
+      app.post('/orders', async (req,res)=>{
+          const order = req.body;
+          const result = await clientCollection.insertOne(order);
+          //console.log('order',order);
+          res.json(result);
+      })
     }
     finally{
         //await client.close();
