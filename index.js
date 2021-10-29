@@ -22,6 +22,10 @@ async function run(){
         console.log('database connected');
         const database = client.db('onlineBookShop');
         const bookCollection = database.collection('books');
+
+        const query = { title: 'Back to the Future' };
+        const book = await bookCollection.insertOne(query);
+        console.log(book);
     }
     finally{
         //await client.close();
