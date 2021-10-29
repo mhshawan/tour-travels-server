@@ -12,7 +12,7 @@ app.use(express.json());
 
 //database
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.wvpgl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-console.log(uri);
+//console.log(uri);
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //function
@@ -29,7 +29,7 @@ async function run(){
          // console.log(req.query);
           const cursor = bookCollection.find({});
           const books = await cursor.toArray(); 
-          console.log(books); 
+          //console.log(books); 
           res.send(books);
       });
 
