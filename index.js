@@ -36,7 +36,7 @@ async function run(){
 
       //use post to get data by keys
       app.post('books/byKeys',async (req,res)=>{
-          //console.log(req.body);
+          console.log(req.body);
           const keys = req.body;
           const query = {key:{$in:keys}};
           const users = await productCollection.find(query).toArray();
